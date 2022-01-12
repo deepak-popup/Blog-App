@@ -1,0 +1,21 @@
+<%= form_with model: article do |f| %>
+  <ul>
+    <% article.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+  <br>
+  <div>
+    <%= f.label :title %> <br>
+    <%= f.text_field :title %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :body %> <br>
+    <%= f.text_field :body %>
+  </div>
+  <br>
+  <div>
+    <%= f.submit article.persisted? ? "Edit" : "Save" %>
+  </div>
+<% end %>
