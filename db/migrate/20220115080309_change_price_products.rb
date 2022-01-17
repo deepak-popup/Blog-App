@@ -7,7 +7,7 @@ class ChangePriceProducts < ActiveRecord::Migration[6.1]
 
   def down 
     change_table :products do |t|
-      t.change :price, :string
+      t.change :price, :integer
     end
   end
 end

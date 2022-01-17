@@ -16,6 +16,11 @@
   </div>
   <br>
   <div>
+    <%= f.label :status %> <br>
+    <%= f.select :status, ["public", "private", "archived"], selected: "public" %>
+  </div>
+  <br>
+  <div>
     <%= f.submit article.persisted? ? "Edit" : "Save" %>
   </div>
 <% end %>
