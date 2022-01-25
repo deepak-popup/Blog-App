@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_17_065110) do
+ActiveRecord::Schema.define(version: 2022_01_25_095838) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "address"
+    t.integer "client_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["client_id"], name: "index_addresses_on_client_id"
+  end
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -18,6 +26,20 @@ ActiveRecord::Schema.define(version: 2022_01_17_065110) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "status"
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string "client_name"
+    t.integer "orders_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "clients_roles", id: false, force: :cascade do |t|
+    t.integer "client_id"
+    t.integer "role_id"
+    t.index ["client_id"], name: "index_clients_roles_on_client_id"
+    t.index ["role_id"], name: "index_clients_roles_on_role_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -30,12 +52,26 @@ ActiveRecord::Schema.define(version: 2022_01_17_065110) do
     t.index ["article_id"], name: "index_comments_on_article_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "client_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["client_id"], name: "index_orders_on_client_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "price"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "role"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "comments", "articles"
