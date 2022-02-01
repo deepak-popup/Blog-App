@@ -5,9 +5,9 @@ Our blog has <%= Article.public_count %> articles and counting!
 <ul>
   <% @articles.each do |article| %>
     <li>
-      <%= link_to article.title, article %>
+      <%= link_to article.title, [@user, article] %>
     </li>
   <% end %>
 </ul>
 
-<%= link_to "Create Article", new_article_path %>
+<%= link_to "Create Article", new_user_article_path %>

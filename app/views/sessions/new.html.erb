@@ -1,0 +1,17 @@
+<h1>Sign In</h1>
+
+<%= form_with url: login_path do |f| %>
+  <div>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <br>
+  <div>
+    <%= f.submit "Submit", disable_with: 'Submiting...' %>
+  </div>
+<% end %>

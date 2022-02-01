@@ -1,18 +1,20 @@
 class ArticlesController < ApplicationController
+  before_action :find_user
+
   def index
-    @articles = Article.all
+    @articles = @user.articles.all
   end
 
   def show
-    @article = Article.find(params[:id])
+    @article = @user.articles.find(params[:id])
   end
 
   def new
-    @article = Article.new
+    @article = @user.articles.new
   end
 
   def create
-    @article = Article.new(article_params)
+    @article = @user.articles.new(article_params)
     if @article.save
       redirect_to @article
     else
@@ -21,11 +23,11 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
+    @article = @user.articles.find(params[:id])
   end
   
   def update
-    @article = Article.find(params[:id])
+    @article = @user.articles.find(params[:id])
       if @article.update(article_params)
         redirect_to @article
       else
@@ -34,7 +36,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
+    @article = @user.articles.find(params[:id])
     @article.destroy
     redirect_to root_path
   end
@@ -43,5 +45,9 @@ class ArticlesController < ApplicationController
 
     def article_params 
       params.require(:article).permit(:title, :body, :status)
+    end
+
+    def find_user
+      @user = User.find_by(id: session[:user_id])
     end
 end

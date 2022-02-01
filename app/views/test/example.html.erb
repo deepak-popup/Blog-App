@@ -1,8 +1,0 @@
-<h4>Simple Form</h4>
-
-<%= form_with(url: "/search", method: :get, multipart: true) do %>
-  <%= label_tag(:query, "Search for: ") %>
-  <%= text_field_tag(:query) %>
-  <%= file_field_tag(:picture) %>
-  <%= submit_tag("Search")%>
-<% end %>

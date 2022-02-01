@@ -1,0 +1,29 @@
+<h1>Sign Up</h1>
+
+<%= form_with model: @user do |f| %>
+  <ul>
+    <% if @user.errors.any? %>
+      <%= @user.errors.full_messages do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    <% end %>
+  </ul>
+  <div>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <br>
+  <div>
+    <%= f.submit "Submit", disable_with: 'Submiting...' %>
+  </div>
+<% end %>

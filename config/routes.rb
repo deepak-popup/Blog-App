@@ -1,15 +1,14 @@
 Rails.application.routes.draw do
-  root "articles#index"
+  root "sessions#new"
 
-  resources :articles do
-    member do 
-      get "preview"
+  resources :users, controller: "registrations", only: [:new, :create] do
+    resources :articles do
+      resources :comments
     end
-    resources :comments
   end
 
-  get "/test", to: "test#example"
-  get "/search", to: "test#search"
+  get "/login", to: "sessions#new"
+  post "/login", to: "sessions#create"
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
