@@ -8,4 +8,4 @@
   <%= comment.body %>
 </p>
 
-<p><%= link_to "delete comment", [comment.article, comment], method: :delete, data: { confirm: "Are you sure?" } %></p>
+<p><%= link_to "delete comment", [comment.article.user, comment.article, comment], method: :delete, data: { confirm: "Are you sure?" } %></p>
