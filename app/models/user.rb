@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  before_save do
+    self.email = "add_your_email@host.com"
+  end
+
   has_many :articles, dependent: :destroy
 
   has_secure_password
